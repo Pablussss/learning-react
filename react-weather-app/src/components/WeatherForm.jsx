@@ -2,9 +2,9 @@ import { useState, useContext } from "react";
 import { WeatherContext } from "../context/WeatherContext";
 
 export function WeatherForm() {
+  const [weather, setWeather] = useState("");
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
-  const { data } = useContext(WeatherContext);
 
   function handleSubmit(e) {
     e.preventDefault();
