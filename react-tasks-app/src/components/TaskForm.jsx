@@ -39,5 +39,3 @@ export function TaskForm() {
     </div>
   );
 }
-
-export default TaskForm;

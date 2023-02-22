@@ -1,59 +1,17 @@
-import { WeatherCard } from "./components/WeatherCard";
+import { WeatherList } from "./components/WeatherList";
 import { WeatherForm } from "./components/WeatherForm";
-import { getWeather } from "./api/weather";
-import { useEffect, useState } from "react";
 
 export function App() {
-  const [weather, setWeather] = useState("");
-  const [city, setCity] = useState("Madrid");
-  const [country, setCountry] = useState("ES");
+  return (
+    <main className=" bg-blue-400 antialiased min-h-screen ">
+      <h1 className="text-3xl mb-10 text-center font-bold text-white">
+        Weather App
+      </h1>
+      <div className="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0">
+        <WeatherList />
 
-  useEffect(() => {
-    async function fetchWeather() {
-      const data = await getWeather(country, city);
-      setWeather(data);
-    }
-    fetchWeather();
-  }, []);
-
-  async function handleSubmit(e) {
-    e.preventDefault();
-
-    const data = await getWeather(country, city);
-    setWeather(data);
-  }
-
-  if (weather)
-    return (
-      <div>
-        <h1>Weather App</h1>
-        <form onSubmit={handleSubmit}>
-          <input
-            placeholder="Introduzca la ciudad "
-            onChange={(e) => {
-              setCity(e.target.value);
-            }}
-            value={city}
-            autoFocus
-          ></input>
-          <input
-            placeholder="Introduzca el pais"
-            onChange={(e) => {
-              setCountry(e.target.value);
-            }}
-            value={country}
-          ></input>
-          <button>Obtener</button>
-        </form>
-
-        <h2>El tiempo en {weather.name}</h2>
-        <ul>
-          <li>Temperatura actual {weather.main.temp}</li>
-          <li>Temperatura minima {weather.main.temp_min}</li>
-          <li>Temperatura máxima {weather.main.temp_max}</li>
-          <li>Humedad {weather.main.humidity}</li>
-          <li>Descripcion {weather.weather[0].description}</li>
-        </ul>
+        <WeatherForm />
       </div>
-    );
+    </main>
+  );
 }
