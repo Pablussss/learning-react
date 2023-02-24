@@ -9,6 +9,6 @@ function setUrl(city, days) {
   return `http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${city}&days=${days}&lang=es`;
 }
 
-export async function getWeather(city = "Madrid", days = 0) {
+export async function getWeather(city = "Madrid", days = 3) {
   return await CallApi(setUrl(city, days));
 }

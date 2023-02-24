@@ -10,8 +10,8 @@ export function WeatherContextProvider(props) {
     fetchWeather();
   }, []);
 
-  async function fetchWeather(city, days) {
-    const data = await getWeather(city, days);
+  async function fetchWeather(city) {
+    const data = await getWeather(city);
     console.log(data);
     if (!data.error) setWeather(data);
   }
