@@ -4,14 +4,18 @@ import { WeatherCard } from "./WeatherCard";
 
 export function WeatherList() {
   const { weather } = useContext(WeatherContext);
-
-  if (weather) {
-    return (
-      <div className="rounded-lg w-auto">
-        {weather.forecast.forecastday.map((day) => (
-          <WeatherCard dayWeather={day} key={day.length + 1} />
-        ))}
+  return (
+    weather && (
+      <div>
+        <h1 className="text-4xl text-white text-center p-2">
+          El tiempo en {weather.location.name}, {weather.location.country}
+        </h1>
+        <div className="flex-wrap items-center justify-center text-center sm:flex ">
+          {weather.forecast.forecastday.map((day) => (
+            <WeatherCard dayWeather={day} />
+          ))}
+        </div>
       </div>
-    );
-  }
+    )
+  );
 }
